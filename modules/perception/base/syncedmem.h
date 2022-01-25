@@ -69,6 +69,12 @@ namespace apollo {
 namespace perception {
 namespace base {
 
+#if GPU_PLATFORM == AMD
+  #define cudaMallocHost hipMallocHost
+  #define cudaMallocHost hipHostFree
+  #define cudaStream_t hipStream_t
+#endif
+
 inline void PerceptionMallocHost(void** ptr, size_t size, bool use_cuda) {
 #if USE_GPU == 1
   if (use_cuda) {
