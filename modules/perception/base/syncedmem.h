@@ -71,7 +71,7 @@ namespace base {
 
 #if GPU_PLATFORM == AMD
   #define cudaMallocHost hipMallocHost
-  #define cudaMallocHost hipHostFree
+  #define cudaFreeHost hipHostFree
   #define cudaStream_t hipStream_t
 #endif
 

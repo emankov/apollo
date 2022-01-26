@@ -41,9 +41,9 @@ namespace base {
 #if USE_GPU == 1
 
 #if GPU_PLATFORM == AMD
-#define cudaError_t hipError_t
-#define cudaSuccess hipSuccess
-#define cudaGetErrorString hipGetErrorString
+  #define cudaError_t hipError_t
+  #define cudaSuccess hipSuccess
+  #define cudaGetErrorString hipGetErrorString
 #endif
 
 #define BASE_CUDA_CHECK(condition) \
