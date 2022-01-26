@@ -15,8 +15,12 @@
  *****************************************************************************/
 
 #include <vector>
-
-#include <cublas_v2.h>
+#if GPU_PLATFORM == NVIDIA
+  #include <cublas_v2.h>
+#elif GPU_PLATFORM == AMD
+  #include <hip/hip_runtime.h>
+  #include <hipblas.h>
+#endif
 
 #include "modules/common/math/line_segment2d.h"
 #include "modules/common/math/vec2d.h"
@@ -47,7 +51,11 @@ class CudaNearestSegment {
   CudaLineSegment2d* host_seg_;
   double* dev_dist_;
   CudaLineSegment2d* dev_seg_;
+#if GPU_PLATFORM == NVIDIA
   cublasHandle_t handle_;
+#elif GPU_PLATFORM == AMD
+  hipblasHandle_t handle_;
+#endif
 };
 
 }  // namespace pnc_map

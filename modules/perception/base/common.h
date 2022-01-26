@@ -19,10 +19,13 @@
 #include <cassert>
 
 #if USE_GPU == 1
-
-#include <cublas_v2.h>
-#include <cuda_runtime.h>
-
+  #if GPU_PLATFORM == NVIDIA
+    #include <cublas_v2.h>
+    #include <cuda_runtime.h>
+  #elif GPU_PLATFORM == AMD
+    #include <hipblas.h>
+    #include <hip/hip_runtime.h>
+  #endif
 #endif
 
 namespace apollo {
@@ -34,6 +37,12 @@ namespace base {
 #endif
 
 #if USE_GPU == 1
+
+#if GPU_PLATFORM == AMD
+  #define cudaError_t hipError_t
+  #define cudaSuccess hipSuccess
+  #define cudaGetErrorString hipGetErrorString
+#endif
 
 #define BASE_CUDA_CHECK(condition) \
   { apollo::perception::base::GPUAssert((condition), __FILE__, __LINE__); }
