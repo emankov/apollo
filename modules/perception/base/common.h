@@ -19,15 +19,13 @@
 #include <cassert>
 
 #if USE_GPU == 1
-
-#if GPU_PLATFORM == NVIDIA
-#include <cublas_v2.h>
-#include <cuda_runtime.h>
-#elif GPU_PLATFORM == AMD
-#include <hipblas.h>
-#include <hip/hip_runtime.h>
-#endif
-
+  #if GPU_PLATFORM == NVIDIA
+    #include <cublas_v2.h>
+    #include <cuda_runtime.h>
+  #elif GPU_PLATFORM == AMD
+    #include <hipblas.h>
+    #include <hip/hip_runtime.h>
+  #endif
 #endif
 
 namespace apollo {

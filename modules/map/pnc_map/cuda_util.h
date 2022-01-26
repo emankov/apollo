@@ -16,10 +16,10 @@
 
 #include <vector>
 #if GPU_PLATFORM == NVIDIA
-#include <cublas_v2.h>
+  #include <cublas_v2.h>
 #elif GPU_PLATFORM == AMD
-#include <hip/hip_runtime.h>
-#include <hipblas.h>
+  #include <hip/hip_runtime.h>
+  #include <hipblas.h>
 #endif
 
 #include "modules/common/math/line_segment2d.h"
