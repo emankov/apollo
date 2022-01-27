@@ -71,6 +71,10 @@ namespace apollo {
 namespace perception {
 namespace base {
 
+#if GPU_PLATFORM == AMD
+  #define cudaMalloc hipMalloc
+#endif
+
 TEST(BlobTest, header_test) {
   Blob<float> blob_empty;
   EXPECT_EQ(blob_empty.shape_string(), "(0)");

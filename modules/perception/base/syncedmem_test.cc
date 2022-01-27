@@ -147,6 +147,12 @@ TEST_F(SyncedMemoryTest, TestCPUWrite) {
 
 #if USE_GPU == 1  // GPU test
 
+#if GPU_PLATFORM == AMD
+  #define cudaMemcpy hipMemcpy
+  #define cudaMemcpyDefault hipMemcpyDefault
+  #define cudaMemset hipMemset
+#endif
+
 TEST_F(SyncedMemoryTest, TestGPURead) {
   SyncedMemory mem(10, true);
   void* cpu_data = mem.mutable_cpu_data();
