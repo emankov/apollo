@@ -30,6 +30,12 @@ namespace camera {
 
 using cyber::common::GetAbsolutePath;
 
+#if GPU_PLATFORM == AMD
+  #define cudaMemcpy hipMemcpy
+  #define cudaMemcpyDefault hipMemcpyDefault
+  #define cudaDeviceSynchronize hipDeviceSynchronize
+#endif
+
 bool ProjectFeature::Init(const FeatureExtractorInitOptions &options) {
   std::string efx_config = GetAbsolutePath(options.root_dir, options.conf_file);
   ACHECK(cyber::common::GetProtoFromFile(efx_config, &param_))

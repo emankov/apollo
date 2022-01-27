@@ -32,6 +32,12 @@ namespace camera {
 
 using cyber::common::GetAbsolutePath;
 
+#if GPU_PLATFORM == AMD
+  #define cudaSetDevice hipSetDevice
+  #define cudaSuccess hipSuccess
+  #define cudaDeviceSynchronize hipDeviceSynchronize
+#endif
+
 bool TrafficLightDetection::Init(
     const camera::TrafficLightDetectorInitOptions &options) {
   std::string proto_path = GetAbsolutePath(options.root_dir, options.conf_file);

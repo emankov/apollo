@@ -24,6 +24,10 @@ namespace apollo {
 namespace perception {
 namespace camera {
 
+#if GPU_PLATFORM == AMD
+  #define cudaSetDevice hipSetDevice
+#endif
+
 class ImageGpuPreprocessHandler {
  public:
   ImageGpuPreprocessHandler() {}

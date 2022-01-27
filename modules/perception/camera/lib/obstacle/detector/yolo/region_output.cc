@@ -23,6 +23,10 @@ namespace apollo {
 namespace perception {
 namespace camera {
 
+#if GPU_PLATFORM == AMD
+  #define cudaStream_t hipStream_t
+#endif
+
 void get_intersect_bbox(const NormalizedBBox &bbox1,
                         const NormalizedBBox &bbox2,
                         NormalizedBBox *intersect_bbox) {
