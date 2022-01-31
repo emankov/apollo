@@ -31,6 +31,12 @@ namespace camera {
 using apollo::cyber::common::GetAbsolutePath;
 using apollo::cyber::common::GetProtoFromFile;
 
+#if GPU_PLATFORM == AMD
+  #define cudaDeviceProp hipDeviceProp_t
+  #define cudaGetDeviceProperties hipGetDeviceProperties
+  #define cudaDeviceSynchronize hipDeviceSynchronize
+#endif
+
 bool DarkSCNNLaneDetector::Init(const LaneDetectorInitOptions &options) {
   std::string proto_path = GetAbsolutePath(options.root_dir, options.conf_file);
   if (!GetProtoFromFile(proto_path, &darkscnn_param_)) {

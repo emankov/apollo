@@ -30,6 +30,12 @@ namespace apollo {
 namespace perception {
 namespace camera {
 
+#if GPU_PLATFORM == AMD
+  #define cudaSetDevice hipSetDevice
+  #define cudaSuccess hipSuccess
+  #define cudaGetErrorString hipGetErrorString
+#endif
+
 bool UndistortionHandler::set_device(int device) {
   device_ = device;
   auto code = cudaSetDevice(device_);

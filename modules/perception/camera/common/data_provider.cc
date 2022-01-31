@@ -25,6 +25,13 @@ namespace apollo {
 namespace perception {
 namespace camera {
 
+#if GPU_PLATFORM == AMD
+  #define cudaSetDevice hipSetDevice
+  #define cudaSuccess hipSuccess
+  #define cudaMemcpy hipMemcpy
+  #define cudaMemcpyDefault hipMemcpyDefault
+#endif
+
 bool DataProvider::Init(const DataProvider::InitOptions &options) {
   src_height_ = options.image_height;
   src_width_ = options.image_width;
