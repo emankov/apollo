@@ -26,10 +26,6 @@ namespace apollo {
 namespace perception {
 namespace inference {
 
-#if GPU_PLATFORM == AMD
-  #define cudaStream_t hipStream_t
-#endif
-
 class ArgMax1Plugin : public nvinfer1::IPlugin {
  public:
   ArgMax1Plugin(const ArgMaxParameter &argmax_param, nvinfer1::Dims in_dims)
