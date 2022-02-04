@@ -16,7 +16,11 @@
 
 #include "modules/perception/inference/utils/cuda_util.h"
 
-#include <cuda_runtime_api.h>
+#if GPU_PLATFORM == NVIDIA
+  #include <cuda_runtime_api.h>
+#elif GPU_PLATFORM == AMD
+  #include <hip/hip_runtime_api.h>
+#endif
 #include <boost/thread.hpp>
 
 #include "cyber/common/log.h"
@@ -24,6 +28,13 @@
 namespace apollo {
 namespace perception {
 namespace inference {
+
+#if GPU_PLATFORM == AMD
+  #define cudaGetDevice hipGetDevice
+  #define cudaGetErrorString hipGetErrorString
+  #define cudaSetDevice hipSetDevice
+  #define cudaSuccess hipSuccess
+#endif
 
 static boost::thread_specific_ptr<CudaUtil> thread_instance_;
 
