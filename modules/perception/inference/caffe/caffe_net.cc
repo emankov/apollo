@@ -22,11 +22,6 @@ namespace apollo {
 namespace perception {
 namespace inference {
 
-#if GPU_PLATFORM == AMD
-  #define cudaMemcpy hipMemcpy
-  #define cudaMemcpyDeviceToDevice hipMemcpyDeviceToDevice
-#endif
-
 CaffeNet::CaffeNet(const std::string &net_file, const std::string &model_file,
                    const std::vector<std::string> &outputs)
     : net_file_(net_file), model_file_(model_file), output_names_(outputs) {}
