@@ -16,7 +16,11 @@
 
 #include "modules/perception/inference/onnx/onnx_obstacle_detector.h"
 
-#include <cuda_runtime_api.h>
+#if GPU_PLATFORM == NVIDIA
+  #include <cuda_runtime_api.h>
+#elif GPU_PLATFORM == AMD
+  #include <hip/hip_runtime_api.h>
+#endif
 #include "cyber/common/log.h"
 
 namespace apollo {
@@ -24,6 +28,12 @@ namespace perception {
 namespace inference {
 
 using apollo::perception::base::Blob;
+
+#if GPU_PLATFORM == AMD
+  #define cudaError_t hipError_t
+  #define cudaSuccess hipSuccess
+  #define cudaGetErrorString hipGetErrorString
+#endif
 
 #define GPU_CHECK(ans) \
   { GPUAssert((ans), __FILE__, __LINE__); }

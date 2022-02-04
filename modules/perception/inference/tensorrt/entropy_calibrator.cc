@@ -18,7 +18,15 @@
 #include <algorithm>
 #include <fstream>
 
-#include <cuda_runtime_api.h>
+#if GPU_PLATFORM == NVIDIA
+  #include <cuda_runtime_api.h>
+#elif GPU_PLATFORM == AMD
+  #include <hip/hip_runtime_api.h>
+  #define cudaMalloc hipMalloc
+  #define cudaFree hipFree
+  #define cudaMemcpy hipMemcpy
+  #define cudaMemcpyHostToDevice hipMemcpyHostToDevice
+#endif
 
 namespace nvinfer1 {
 Int8EntropyCalibrator::Int8EntropyCalibrator(

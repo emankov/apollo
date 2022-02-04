@@ -41,7 +41,27 @@ namespace base {
 #if GPU_PLATFORM == AMD
   #define cudaError_t hipError_t
   #define cudaSuccess hipSuccess
+  #define cudaDeviceProp hipDeviceProp_t
   #define cudaGetErrorString hipGetErrorString
+  #define cudaGetDeviceProperties hipGetDeviceProperties
+  #define cudaGetDeviceCount hipGetDeviceCount
+  #define cudaSetDevice hipSetDevice
+  #define cudaStream_t hipStream_t
+  #define cudaStreamCreate hipStreamCreate
+  #define cudaStreamDestroy hipStreamDestroy
+  #define cudaStreamSynchronize hipStreamSynchronize
+  #define cudaMemcpy hipMemcpy
+  #define cudaMemcpyAsync hipMemcpyAsync
+  #define cudaMemsetAsync hipMemsetAsync
+  #define cudaDeviceSynchronize hipDeviceSynchronize
+  #define cudaMemcpyDeviceToHost hipMemcpyDeviceToHost
+  #define cudaMemcpyHostToDevice hipMemcpyHostToDevice
+  #define cudaMemcpyDeviceToDevice hipMemcpyDeviceToDevice
+  #define cudaMalloc hipMalloc
+  #define cudaFree hipFree
+  #define cublasCreate hipblasCreate
+  #define cublasDestroy hipblasDestroy
+  #define cublasHandle_t hipblasHandle_t
 #endif
 
 #define BASE_CUDA_CHECK(condition) \

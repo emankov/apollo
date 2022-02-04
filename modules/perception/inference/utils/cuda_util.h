@@ -16,11 +16,27 @@
 
 #pragma once
 
-#include <cublas_v2.h>
+#if GPU_PLATFORM == NVIDIA
+  #include <cublas_v2.h>
+#elif GPU_PLATFORM == AMD
+  #include <hipblas.h>
+#endif
 
 namespace apollo {
 namespace perception {
 namespace inference {
+
+#if GPU_PLATFORM == AMD
+  #define CUBLAS_STATUS_SUCCESS HIPBLAS_STATUS_SUCCESS
+  #define cublasCreate hipblasCreate
+  #define cublasDestroy hipblasDestroy
+  #define cublasHandle_t hipblasHandle_t
+  #define cublasStatus_t hipblasStatus_t
+  #define cublasOperation_t hipblasOperation_t
+  #define CUBLAS_OP_N HIPBLAS_OP_N
+  #define CUBLAS_OP_T HIPBLAS_OP_T
+  #define cublasSgemm hipblasSgemm
+#endif
 
 class CudaUtil {
  public:
