@@ -19,7 +19,13 @@
 #include <numeric>
 #include <random>
 
-#include <cuda_runtime_api.h>
+#if GPU_PLATFORM == NVIDIA
+  #include <cuda_runtime_api.h>
+#elif GPU_PLATFORM == AMD
+  #include <hip/hip_runtime_api.h>
+  #define cudaSetDevice hipSetDevice
+  #define cudaSuccess hipSuccess
+#endif
 
 #include "cyber/common/log.h"
 #include "modules/perception/base/object_pool_types.h"
