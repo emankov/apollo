@@ -42,8 +42,26 @@
 // headers in STL
 #include <stdio.h>
 
-// headers in CUDA
-#include <cuda_runtime_api.h>
+// headers in CUDA/HIP
+#if GPU_PLATFORM == NVIDIA
+  #include <cuda_runtime_api.h>
+#elif GPU_PLATFORM == AMD
+  #include <hip/hip_runtime_api.h>
+  #define cudaError_t hipError_t
+  #define cudaSuccess hipSuccess
+  #define cudaGetErrorString hipGetErrorString
+  #define cudaMalloc hipMalloc
+  #define cudaFree hipFree
+  #define cudaMemset hipMemset
+  #define cudaMemcpy hipMemcpy
+  #define cudaMemcpyAsync hipMemcpyAsync
+  #define cudaMemcpyDeviceToDevice hipMemcpyDeviceToDevice
+  #define cudaMemcpyDeviceToHost hipMemcpyDeviceToHost
+  #define cudaMemcpyHostToDevice hipMemcpyHostToDevice
+  #define cudaStream_t hipStream_t
+  #define cudaStreamCreate hipStreamCreate
+  #define cudaStreamDestroy hipStreamDestroy
+#endif
 
 namespace apollo {
 namespace perception {

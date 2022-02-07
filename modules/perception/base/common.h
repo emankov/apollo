@@ -59,6 +59,8 @@ namespace base {
   #define cudaMemcpyDeviceToDevice hipMemcpyDeviceToDevice
   #define cudaMalloc hipMalloc
   #define cudaFree hipFree
+  #define cudaMallocHost hipMallocHost
+  #define cudaFreeHost hipHostFree
   #define cublasCreate hipblasCreate
   #define cublasDestroy hipblasDestroy
   #define cublasHandle_t hipblasHandle_t
