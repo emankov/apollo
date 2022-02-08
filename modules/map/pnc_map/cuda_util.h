@@ -16,10 +16,22 @@
 
 #include <vector>
 #if GPU_PLATFORM == NVIDIA
+  #include <cuda_runtime_api.h>
   #include <cublas_v2.h>
 #elif GPU_PLATFORM == AMD
   #include <hip/hip_runtime.h>
+  #include <hip/hip_runtime_api.h>
   #include <hipblas.h>
+  #define cudaError_t hipError_t
+  #define cudaMalloc hipMalloc
+  #define cudaSuccess hipSuccess
+  #define cudaFree hipFree
+  #define cudaMemcpy hipMemcpy
+  #define cudaMemcpyHostToDevice hipMemcpyHostToDevice
+  #define cublasHandle_t hipblasHandle_t
+  #define cublasStatus_t hipblasStatus_t
+  #define cublasIdamin hipblasIdamin
+  #define CUBLAS_STATUS_SUCCESS HIPBLAS_STATUS_SUCCESS
 #endif
 
 #include "modules/common/math/line_segment2d.h"
@@ -51,11 +63,7 @@ class CudaNearestSegment {
   CudaLineSegment2d* host_seg_;
   double* dev_dist_;
   CudaLineSegment2d* dev_seg_;
-#if GPU_PLATFORM == NVIDIA
   cublasHandle_t handle_;
-#elif GPU_PLATFORM == AMD
-  hipblasHandle_t handle_;
-#endif
 };
 
 }  // namespace pnc_map
