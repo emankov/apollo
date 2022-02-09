@@ -25,6 +25,37 @@
   #elif GPU_PLATFORM == AMD
     #include <hipblas.h>
     #include <hip/hip_runtime.h>
+    #define cublasCreate hipblasCreate
+    #define cublasDestroy hipblasDestroy
+    #define cublasHandle_t hipblasHandle_t
+    #define cudaDeviceProp hipDeviceProp_t
+    #define cudaDeviceSynchronize hipDeviceSynchronize
+    #define cudaError_t hipError_t
+    #define cudaFree hipFree
+    #define cudaFreeHost hipHostFree
+    #define cudaGetDevice hipGetDevice
+    #define cudaGetDeviceCount hipGetDeviceCount
+    #define cudaGetDeviceProperties hipGetDeviceProperties
+    #define cudaGetErrorString hipGetErrorString
+    #define cudaMalloc hipMalloc
+    #define cudaMallocHost hipMallocHost
+    #define cudaMemcpy hipMemcpy
+    #define cudaMemcpyAsync hipMemcpyAsync
+    #define cudaMemcpyDefault hipMemcpyDefault
+    #define cudaMemcpyDeviceToDevice hipMemcpyDeviceToDevice
+    #define cudaMemcpyDeviceToHost hipMemcpyDeviceToHost
+    #define cudaMemcpyHostToDevice hipMemcpyHostToDevice
+    #define cudaMemcpyKind hipMemcpyKind
+    #define cudaMemset hipMemset
+    #define cudaMemsetAsync hipMemsetAsync
+    #define cudaPointerAttributes hipPointerAttribute_t
+    #define cudaPointerGetAttributes hipPointerGetAttributes
+    #define cudaSetDevice hipSetDevice
+    #define cudaStream_t hipStream_t
+    #define cudaStreamCreate hipStreamCreate
+    #define cudaStreamDestroy hipStreamDestroy
+    #define cudaStreamSynchronize hipStreamSynchronize
+    #define cudaSuccess hipSuccess
   #endif
 #endif
 
@@ -37,34 +68,6 @@ namespace base {
 #endif
 
 #if USE_GPU == 1
-
-#if GPU_PLATFORM == AMD
-  #define cudaError_t hipError_t
-  #define cudaSuccess hipSuccess
-  #define cudaDeviceProp hipDeviceProp_t
-  #define cudaGetErrorString hipGetErrorString
-  #define cudaGetDeviceProperties hipGetDeviceProperties
-  #define cudaGetDeviceCount hipGetDeviceCount
-  #define cudaSetDevice hipSetDevice
-  #define cudaStream_t hipStream_t
-  #define cudaStreamCreate hipStreamCreate
-  #define cudaStreamDestroy hipStreamDestroy
-  #define cudaStreamSynchronize hipStreamSynchronize
-  #define cudaMemcpy hipMemcpy
-  #define cudaMemcpyAsync hipMemcpyAsync
-  #define cudaMemsetAsync hipMemsetAsync
-  #define cudaDeviceSynchronize hipDeviceSynchronize
-  #define cudaMemcpyDeviceToHost hipMemcpyDeviceToHost
-  #define cudaMemcpyHostToDevice hipMemcpyHostToDevice
-  #define cudaMemcpyDeviceToDevice hipMemcpyDeviceToDevice
-  #define cudaMalloc hipMalloc
-  #define cudaFree hipFree
-  #define cudaMallocHost hipMallocHost
-  #define cudaFreeHost hipHostFree
-  #define cublasCreate hipblasCreate
-  #define cublasDestroy hipblasDestroy
-  #define cublasHandle_t hipblasHandle_t
-#endif
 
 #define BASE_CUDA_CHECK(condition) \
   { apollo::perception::base::GPUAssert((condition), __FILE__, __LINE__); }

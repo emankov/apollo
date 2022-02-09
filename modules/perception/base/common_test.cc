@@ -21,10 +21,6 @@ namespace apollo {
 namespace perception {
 namespace base {
 
-#if GPU_PLATFORM == AMD
-  #define cudaSetDevice hipSetDevice
-#endif
-
 TEST(CommonTest, GPUAssertTest) {
 #if USE_GPU == 1
   GPUAssert(cudaSetDevice(-1), __FILE__, __LINE__, false);
