@@ -17,26 +17,9 @@
 #include "modules/map/pnc_map/cuda_util.h"
 
 #include "cyber/common/log.h"
-#if GPU_PLATFORM == NVIDIA
-  #include <cuda_runtime_api.h>
-#elif GPU_PLATFORM == AMD
-  #include <hip/hip_runtime_api.h>
-#endif
 
 namespace apollo {
 namespace pnc_map {
-
-#if GPU_PLATFORM  == AMD
-  #define cudaError_t hipError_t
-  #define cudaMalloc hipMalloc
-  #define cudaSuccess hipSuccess
-  #define cudaFree hipFree
-  #define cudaMemcpy hipMemcpy
-  #define cudaMemcpyHostToDevice hipMemcpyHostToDevice
-  #define cublasStatus_t hipblasStatus_t
-  #define cublasIdamin hipblasIdamin
-  #define CUBLAS_STATUS_SUCCESS HIPBLAS_STATUS_SUCCESS
-#endif
 
 constexpr std::size_t kDeviceVecSize = 2000;
 
