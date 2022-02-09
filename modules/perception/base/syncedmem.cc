@@ -66,21 +66,6 @@ namespace apollo {
 namespace perception {
 namespace base {
 
-#if GPU_PLATFORM == AMD
-  #define cudaGetDevice hipGetDevice
-  #define cudaFree hipFree
-  #define cudaMemcpy hipMemcpy
-  #define cudaMemcpyDefault hipMemcpyDefault
-  #define cudaMalloc hipMalloc
-  #define cudaMemset hipMemset
-  #define cudaStream_t hipStream_t
-  #define cudaMemcpyKind hipMemcpyKind
-  #define cudaMemcpyHostToDevice hipMemcpyHostToDevice
-  #define cudaMemcpyAsync hipMemcpyAsync
-  #define cudaPointerAttributes hipPointerAttribute_t
-  #define cudaPointerGetAttributes hipPointerGetAttributes
-#endif
-
 SyncedMemory::SyncedMemory(bool use_cuda)
     : cpu_ptr_(NULL),
       gpu_ptr_(NULL),
