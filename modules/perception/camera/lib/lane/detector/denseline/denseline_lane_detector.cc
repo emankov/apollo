@@ -29,12 +29,6 @@ namespace camera {
 
 using cyber::common::GetAbsolutePath;
 
-#if GPU_PLATFORM == AMD
-  #define cudaDeviceProp hipDeviceProp_t
-  #define cudaGetDeviceProperties hipGetDeviceProperties
-  #define cudaDeviceSynchronize hipDeviceSynchronize
-#endif
-
 bool DenselineLaneDetector::Init(const LaneDetectorInitOptions &options) {
   std::string proto_path = GetAbsolutePath(options.root_dir, options.conf_file);
   if (!cyber::common::GetProtoFromFile(proto_path, &denseline_param_)) {

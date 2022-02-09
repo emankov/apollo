@@ -25,14 +25,6 @@ namespace apollo {
 namespace perception {
 namespace camera {
 
-#if GPU_PLATFORM == AMD
-  #define cudaMalloc hipMalloc
-  #define cudaMemcpy hipMemcpy
-  #define cudaMemcpyHostToDevice hipMemcpyHostToDevice
-  #define cudaMemcpyDeviceToHost hipMemcpyDeviceToHost
-  #define cudaFree hipFree
-#endif
-
 /* Initialization of the GPU routines for camera data preprocessing
  *
  * Return: 0 - success; other - failure

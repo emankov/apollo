@@ -28,12 +28,6 @@ namespace camera {
 
 using cyber::common::GetAbsolutePath;
 
-#if GPU_PLATFORM == AMD
-  #define cudaSetDevice hipSetDevice
-  #define cudaSuccess hipSuccess
-  #define cudaDeviceSynchronize hipDeviceSynchronize
-#endif
-
 void ClassifyBySimple::Init(
     const traffic_light::recognition::ClassifyParam& model_config,
     const int gpu_id, const std::string work_root) {

@@ -34,10 +34,6 @@ namespace apollo {
 namespace perception {
 namespace camera {
 
-#if GPU_PLATFORM == AMD
-  #define cudaStream_t hipStream_t
-#endif
-
 static const char NormalNMS[] = "NormalNMS";
 static const char LinearSoftNMS[] = "LinearSoftNMS";
 static const char GuassianSoftNMS[] = "GuassianSoftNMS";
