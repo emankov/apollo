@@ -22,9 +22,11 @@
   #if GPU_PLATFORM == NVIDIA
     #include <cublas_v2.h>
     #include <cuda_runtime.h>
+    #include <cuda_runtime_api.h>
   #elif GPU_PLATFORM == AMD
     #include <hipblas.h>
     #include <hip/hip_runtime.h>
+    #include <hip/hip_runtime_api.h>
     #define cublasCreate hipblasCreate
     #define cublasDestroy hipblasDestroy
     #define cublasHandle_t hipblasHandle_t
