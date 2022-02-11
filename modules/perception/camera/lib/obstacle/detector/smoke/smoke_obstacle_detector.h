@@ -38,11 +38,6 @@ namespace apollo {
 namespace perception {
 namespace camera {
 
-#if GPU_PLATFORM == AMD
-  #define cudaStreamDestroy hipStreamDestroy
-  #define cudaStream_t hipStream_t
-#endif
-
 class SmokeObstacleDetector : public BaseObstacleDetector {
  public:
   SmokeObstacleDetector() : BaseObstacleDetector() {}

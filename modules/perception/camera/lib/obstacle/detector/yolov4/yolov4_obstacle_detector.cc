@@ -30,12 +30,6 @@ namespace camera {
 
 using cyber::common::GetAbsolutePath;
 
-#if GPU_PLATFORM == AMD
-  #define cudaSetDevice hipSetDevice
-  #define cudaStreamCreate hipStreamCreate
-  #define cudaSuccess hipSuccess
-#endif
-
 void Yolov4ObstacleDetector::LoadInputShape(
     const yolo::ModelParam &model_param) {
   float offset_ratio = model_param.offset_ratio();

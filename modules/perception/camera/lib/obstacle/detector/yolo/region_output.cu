@@ -32,11 +32,6 @@ namespace apollo {
 namespace perception {
 namespace camera {
 
-#if GPU_PLATFORM == AMD
-  #define cudaStream_t hipStream_t
-  #define cudaStreamSynchronize hipStreamSynchronize
-#endif
-
 __host__ __device__ float sigmoid_gpu(float x) { return 1.0 / (1.0 + exp(-x)); }
 
 __host__ __device__ float bbox_size_gpu(const float *bbox,
