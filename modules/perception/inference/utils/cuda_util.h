@@ -18,8 +18,10 @@
 
 #if GPU_PLATFORM == NVIDIA
   #include <cublas_v2.h>
+  #include <cuda_runtime_api.h>
 #elif GPU_PLATFORM == AMD
   #include <hipblas.h>
+  #include <hip/hip_runtime_api.h>
 #endif
 
 namespace apollo {
@@ -31,11 +33,15 @@ namespace inference {
   #define cublasCreate hipblasCreate
   #define cublasDestroy hipblasDestroy
   #define cublasHandle_t hipblasHandle_t
-  #define cublasStatus_t hipblasStatus_t
-  #define cublasOperation_t hipblasOperation_t
   #define CUBLAS_OP_N HIPBLAS_OP_N
   #define CUBLAS_OP_T HIPBLAS_OP_T
+  #define cublasOperation_t hipblasOperation_t
   #define cublasSgemm hipblasSgemm
+  #define cublasStatus_t hipblasStatus_t
+  #define cudaGetDevice hipGetDevice
+  #define cudaGetErrorString hipGetErrorString
+  #define cudaSetDevice hipSetDevice
+  #define cudaSuccess hipSuccess
 #endif
 
 class CudaUtil {
