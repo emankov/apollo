@@ -23,15 +23,15 @@
   #include <hip/hip_runtime_api.h>
   #include <hipblas.h>
   #define cudaError_t hipError_t
-  #define cudaMalloc hipMalloc
-  #define cudaSuccess hipSuccess
   #define cudaFree hipFree
+  #define cudaMalloc hipMalloc
   #define cudaMemcpy hipMemcpy
   #define cudaMemcpyHostToDevice hipMemcpyHostToDevice
-  #define cublasHandle_t hipblasHandle_t
-  #define cublasStatus_t hipblasStatus_t
-  #define cublasIdamin hipblasIdamin
+  #define cudaSuccess hipSuccess
   #define CUBLAS_STATUS_SUCCESS HIPBLAS_STATUS_SUCCESS
+  #define cublasHandle_t hipblasHandle_t
+  #define cublasIdamin hipblasIdamin
+  #define cublasStatus_t hipblasStatus_t
 #endif
 
 #include "modules/common/math/line_segment2d.h"
