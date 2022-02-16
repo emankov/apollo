@@ -48,19 +48,20 @@
 #elif GPU_PLATFORM == AMD
   #include <hip/hip_runtime_api.h>
   #define cudaError_t hipError_t
-  #define cudaSuccess hipSuccess
+  #define cudaFree hipFree
   #define cudaGetErrorString hipGetErrorString
   #define cudaMalloc hipMalloc
-  #define cudaFree hipFree
-  #define cudaMemset hipMemset
   #define cudaMemcpy hipMemcpy
   #define cudaMemcpyAsync hipMemcpyAsync
   #define cudaMemcpyDeviceToDevice hipMemcpyDeviceToDevice
   #define cudaMemcpyDeviceToHost hipMemcpyDeviceToHost
   #define cudaMemcpyHostToDevice hipMemcpyHostToDevice
+  #define cudaMemset hipMemset
+  #define cudaSetDevice hipSetDevice
   #define cudaStream_t hipStream_t
   #define cudaStreamCreate hipStreamCreate
   #define cudaStreamDestroy hipStreamDestroy
+  #define cudaSuccess hipSuccess
 #endif
 
 namespace apollo {
